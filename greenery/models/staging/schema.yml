@@ -2,9 +2,16 @@ version: 2
 
 models:
   - name: stg_greenery_addresses
+    description: customer shipping addresses
   - name: stg_greenery_events
+    description: site analytic events
   - name: stg_greenery_order_items
+    description: items ordered by purchase order
   - name: stg_greenery_orders
+    description: purchase orders
   - name: stg_greenery_products
+    description: available products 
   - name: stg_greenery_promos
+    description: marketing promotions
   - name: stg_greenery_users
+    description: user profiles
