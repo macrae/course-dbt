@@ -4,11 +4,45 @@ sources:
   - name: greenery
     schema: public
     database: dbt
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: { count: 24, period: hour }
+      error_after: { count: 48, period: hour }
+
     tables:
       - name: addresses
+        description: >
+          User addresses
+
       - name: events
-      - name: orders
+        loaded_at_field: created_at
+        description: >
+          Site analytic events
+
       - name: order_items
+        description: >
+          Order id to item id mapping
+
+      - name: orders
+        loaded_at_field: created_at
+        description: >
+          Order log
+
       - name: products
+        description: >
+          Products we sell :)
+
       - name: promos
+        loaded_at_field: created_at
+        description: >
+          Promo discount and status
+
       - name: users
+        loaded_at_field: created_at
+        description: >
+          User contact information

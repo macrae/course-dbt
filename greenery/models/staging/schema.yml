@@ -3,15 +3,132 @@ version: 2
 models:
   - name: stg_greenery_addresses
     description: customer shipping addresses
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+      - name: address
+        tests:
+          - not_null
+      - name: zipcode
+        tests:
+          - not_null
+      - name: state
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                [
+                  "Oklahoma",
+                  "North Carolina",
+                  "Colorado",
+                  "Mississippi",
+                  "Florida",
+                  "Delaware",
+                  "Louisiana",
+                  "Nevada",
+                  "New York",
+                  "West Virginia",
+                  "South Carolina",
+                  "New Mexico",
+                  "Missouri",
+                  "Connecticut",
+                  "District of Columbia",
+                  "Indiana",
+                  "Iowa",
+                  "Massachusetts",
+                  "Ohio",
+                  "Michigan",
+                  "Minnesota",
+                  "Pennsylvania",
+                  "Washington",
+                  "Kentucky",
+                  "Wisconsin",
+                  "Montana",
+                  "Arizona",
+                  "Illinois",
+                  "Virginia",
+                  "Maryland",
+                  "Georgia",
+                  "New Hampshire",
+                  "Nebraska",
+                  "California",
+                  "Kansas",
+                  "Oregon",
+                  "Texas",
+                  "Alabama",
+                ]
+      - name: country
+        tests:
+          - not_null
+
   - name: stg_greenery_events
     description: site analytic events
+    columns:
+      - name: name
+      - name: event_id
+      - name: session_id
+      - name: user_id
+      - name: page_url
+      - name: created_at
+      - name: event_type
+      - name: order_id
+      - name: product_id
+
   - name: stg_greenery_order_items
     description: items ordered by purchase order
+    columns:
+      - name: name
+      - name: order_id
+      - name: product_id
+      - name: quantity
+
   - name: stg_greenery_orders
     description: purchase orders
+    columns:
+      - name: name
+      - name: order_id
+      - name: user_id
+      - name: promo_id
+      - name: address_id
+      - name: created_at
+      - name: order_cost
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at
+
   - name: stg_greenery_products
-    description: available products 
+    description: available products
+    columns:
+      - name: name
+      - name: product_id
+      - name: name
+      - name: price
+      - name: inventory
+
   - name: stg_greenery_promos
     description: marketing promotions
+    columns:
+      - name: name
+      - name: promo_id
+      - name: discount
+
   - name: stg_greenery_users
     description: user profiles
+    columns:
+      - name: name
+      - name: user_id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country
+      - name: created_at
+      - name: updated_at
