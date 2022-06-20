@@ -66,8 +66,10 @@ models:
   - name: stg_greenery_events
     description: site analytic events
     columns:
-      - name: name
-      - name: event_id
+      - name: id
+        tests:
+          - not_null
+          - unique
       - name: session_id
       - name: user_id
       - name: page_url
@@ -79,7 +81,6 @@ models:
   - name: stg_greenery_order_items
     description: items ordered by purchase order
     columns:
-      - name: name
       - name: order_id
       - name: product_id
       - name: quantity
@@ -87,8 +88,10 @@ models:
   - name: stg_greenery_orders
     description: purchase orders
     columns:
-      - name: name
-      - name: order_id
+      - name: id
+        tests:
+          - not_null
+          - unique
       - name: user_id
       - name: promo_id
       - name: address_id
@@ -104,8 +107,10 @@ models:
   - name: stg_greenery_products
     description: available products
     columns:
-      - name: name
-      - name: product_id
+      - name: id
+        tests:
+          - not_null
+          - unique
       - name: name
       - name: price
       - name: inventory
@@ -113,15 +118,19 @@ models:
   - name: stg_greenery_promos
     description: marketing promotions
     columns:
-      - name: name
-      - name: promo_id
+      - name: id
+        tests:
+          - not_null
+          - unique
       - name: discount
 
   - name: stg_greenery_users
     description: user profiles
     columns:
-      - name: name
-      - name: user_id
+      - name: id
+        tests:
+          - not_null
+          - unique
       - name: first_name
       - name: last_name
       - name: email
