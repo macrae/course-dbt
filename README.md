@@ -65,3 +65,46 @@ with
 select avg(n_sessions) from session_summary
 ```
 `avg = 16.3275862068965517`
+
+### Week 2 Assignment
+
+- What is our user repeat rate?
+```
+select 
+count(distinct user_id) 
+from "dbt_sean_m"."int_greenery_user_orders"
+where n_orders > 2
+```
+`count = 99`
+
+- What are good indicators of a user who will likely purchase again? What about indicators of users 
+who are likely NOT to purchase again? If you had more data, what features would you want to look 
+into to answer this question?
+
+Hypothesis - the average order basket size (# of items), is correlated with repeat buyer behavior.
+
+```
+with avg_order_size as (
+  select 
+  user_id,
+  case when n_orders < 2 then False else True end as repeat_buyer,
+  n_items / n_orders as avg_order_size 
+  from "dbt_sean_m"."int_greenery_user_orders"
+  order by 2 desc
+  )
+  
+  select 
+  repeat_buyer,
+  avg(avg_order_size) as avg_order_size 
+  from avg_order_size
+  group by 1 order by 1
+```
+
+```
+repeat_buyer    avg_order_size
+false           2.320
+true            2.339
+```
+
+Results - The average order size is almost the same (2.320 items/order) between repeat and one-time
+buyers.
